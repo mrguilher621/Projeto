@@ -1,48 +1,55 @@
 ﻿@model Guilherme04.Models.Category
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    ViewBag.Title = "Registering a New Category";
 }
 
-<!DOCTYPE html>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    
-    
-    @using (Html.BeginForm()) 
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>Category</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @autofocus = true } })
-                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Registering a new Category
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+
+        <div class="panel-body">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttribute = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="panel-footer panel-info">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit"
+                       value="ADD Category"
+                       class="btn btn-danger" />
+                @Html.ActionLink("Return Listing Category", "Index", null, new { @class = "btn btn-warning" })
+            </div>
+            <br />
+            <br />
+        </div>
+
     </div>
-</body>
-</html>
+}
+
+@section ScriptPage{
+
+    <script src="~/Scripts/jquery.validate.min.js">
+    </script>
+
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js">
+    </script>
+
+}

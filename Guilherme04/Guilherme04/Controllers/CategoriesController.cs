@@ -21,7 +21,7 @@ namespace Guilherme04.Controllers
         // GET: Categories
         public ActionResult Index()
         {
-            return View(context.Categories.OrderBy(c=> c.name));
+            return View(context.Categories.OrderBy(c=> c.Name));
         }
 
         #endregion [ Index ]
@@ -111,6 +111,7 @@ namespace Guilherme04.Controllers
             Category category = context.Categories.Find(ID);
             context.Categories.Remove(category);
             context.SaveChanges();
+            TempData["Message"] = "Category" + category.Name.ToUpper() + "Was Removed";
             return RedirectToAction("Index");
         }
 

@@ -129,6 +129,7 @@ namespace Guilherme04.Controllers
             Supplier supplier = context.Suppliers.Find(ID);
             context.Suppliers.Remove(supplier);
             context.SaveChanges();
+            TempData["Message"] = "Supplier" + supplier.Name.ToUpper() + "Was Removed";
             return RedirectToAction("Index");
         }
         #endregion [ Delete ]

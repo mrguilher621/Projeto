@@ -39,16 +39,12 @@
 
                 <ul class="nav nav-pills nav-stacked">
 
-                    <li role="presentation" class="active"><a href="#">Home</a></li>
+                    <li id="liHome" role="presentation" class="active"><a href="#">Home</a></li>
 
-                    <li role="presentation">
-
-                        @Html.ActionLink("Categories","Index", "Categories")
+                    <li id="liCategory" role="presentation">@Html.ActionLink("Categories","Index", "Categories")
                     </li>
 
-                    <li role="presentation">
-
-                        @Html.ActionLink("Suppleirs","Index", "Suppleirs")
+                    <li id="liSupplier" role="presentation">@Html.ActionLink("Suppleirs","Index", "Suppleirs")
                     </li>
 
                 </ul>

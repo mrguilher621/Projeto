@@ -5,6 +5,14 @@
     ViewBag.Title = "List of Suppleirs";
 }
 
+@if (@TempData["Massage"] != null)
+{
+    <div class="alert alert-success" role="alert" >
+        @TempData["Message"]
+    </div>
+}
+
+
 <!DOCTYPE html>
 
 <div class="panel panel-primary">
@@ -103,9 +111,11 @@
 
     <script type="text/javascript">
 
-$(document).ready(function () {
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liSuppliers').addClass("active");
 
-$('.table').dataTable({"order":[[1, "asc"]]);
+            $('.table').dataTable({"order":[[1, "asc"]]);
 
 });
 
