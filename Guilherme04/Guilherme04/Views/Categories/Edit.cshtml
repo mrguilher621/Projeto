@@ -21,7 +21,7 @@
             <div class="form-horizontal">
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.categoryID)
+                @Html.HiddenFor(model => model.CategoryID)
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -43,6 +43,8 @@
         </div>
     </div>
 }
+
+@Html.Partial("~/views/Products/_BySupplier.cshtml", Model.Products.ToList())
 @section ScriptPage{
 
     <script src="~/Scripts/jquery.validate.min.js">
@@ -50,6 +52,19 @@
 
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js">
     </script>
+
+<script type="text/javascript">
+
+         $(document).ready(function () {
+             $('li').removeClass("active");
+             $('#liCategories').addClass("active");
+             $('.table').dataTable({
+                 "order": [[1, "asc"]]
+             });
+         });
+
+
+</script>
 
 }
 

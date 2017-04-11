@@ -7,9 +7,9 @@ namespace Guilherme04.Models
 {
     public class Category
     {
-        public long categoryID { get; set; }
+        public long? CategoryID { get; set; }
         public string Name { get; set; }
 
-
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

@@ -35,3 +35,16 @@
     </div>
 
 </div>
+
+@Html.Partial("~/views/Products/_BySupplier.cshtml", Model.Products.ToList())
+
+@section ScriptPage{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liCategories').addClass("active");
+        });
+
+    </script>
+}

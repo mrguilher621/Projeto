@@ -34,7 +34,7 @@
 
                     <th>
 
-                        @Html.DisplayNameFor(model => model.categoryID)
+                        @Html.DisplayNameFor(model => model.CategoryID)
 
                     </th>
 
@@ -60,7 +60,7 @@
 
                         <td>
 
-                            @Html.DisplayFor(modelItem => item.categoryID)
+                            @Html.DisplayFor(modelItem => item.CategoryID)
 
                         </td>
 
@@ -72,11 +72,11 @@
 
                         <td>
 
-                            @Html.ActionLink("Edit", "Edit", new { id = item.categoryID }) |
+                            @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }) |
 
-                            @Html.ActionLink("Details", "Details", new { id = item.categoryID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.CategoryID }) |
 
-                            @Html.ActionLink("Delete", "Delete", new { id = item.categoryID })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryID })
 
                         </td>
 
@@ -111,12 +111,14 @@
     <script src="~/Scripts/DataTables/buttons.bootstrap.js"></script>
 
     <script type="text/javascript">
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liCategories').addClass("active");
+            $('.table').dataTable({
+                "order": [[1, "asc"]]
+            });
+        });
 
-$(document).ready(function () {
-
-$('.table').dataTable({"order":[[1, "asc"]]);
-
-});
 
     </script>
 }
