@@ -1,27 +1,60 @@
-﻿using Guilherme04.Contexts;
-using Guilherme04.ExtensionMethods;
-using Guilherme04.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using Services.Tables;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
-namespace Guilherme04.Controllers
+namespace Model.Tables
 {
     public class CategoriesController : Controller
     {
-        private EFContext context = new EFContext();
+        private CategoryServices categoryServices = new CategoryServices();
 
-        #region [ Actions ]
+        private ActionResult GetViewCategoryById(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Category category = categoryServices.GetCategoryById((long)id);
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+            return View(category);
+        }
+
+        private ActionResult SaveCategory(Category category)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    categoryServices.SaveCategory(category);
+                    return RedirectToAction("Index");
+                }
+                return View(category);
+            }
+            catch
+            {
+                return View(category);
+            }
+        }
+
+        private void PopularViewBag(Category category = null)
+        {
+            if (category == null)
+            {
+                ViewBag.CategoryId = new SelectList(categoryServices.GetCategoriesClassifiedByName(),
+                   "CategoryId", "Name");
+            }
+        }
+
+                #region [ Actions ]
 
         #region [ Index ]
-        // GET: Categories
-        public ActionResult Index()
+                // GET: Categories
+                public ActionResult Index()
         {
-            return View(context.Categories.OrderBy(c=> c.Name));
+            return View(categoryServices.GetCategoriesClassifiedByName());
         }
 
         #endregion [ Index ]
@@ -30,6 +63,7 @@ namespace Guilherme04.Controllers
         // GET: Category
         public ActionResult Create()
         {
+            PopularViewBag();
             return View();
         }
 
@@ -38,11 +72,8 @@ namespace Guilherme04.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Category category)
         {
-            //category.categoryID = categories.Select(c => c.categoryID).Max() + 1;
-
-           context.Categories.Add(category);
-            context.SaveChanges();
-            return RedirectToAction("Index");
+            
+            return SaveCategory(category);
         }
 
 
@@ -53,19 +84,8 @@ namespace Guilherme04.Controllers
         // GET: EditCategory
         public ActionResult Edit(long? ID)
         {
-            if (ID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Category category = context.Categories.Find(ID);
-
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(category);
+            PopularViewBag(categoryServices.GetCategoryById((long)ID));
+            return GetViewCategoryById(ID);
         }
 
         //POST: Categories/Edit
@@ -73,44 +93,21 @@ namespace Guilherme04.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Category category)
         {
-            if (ModelState.IsValid)
-            {
-                var dbEntityEntry = context.Entry(category);
-                dbEntityEntry.State = EntityState.Modified;
-                context.SaveChanges();
-                return RedirectToAction("Index");
-
-            }
-
-            return View(category);
+            return SaveCategory(category);
         }
         #endregion [ Edit ]
 
         #region [ Delete ]
         public ActionResult Delete(long? ID)
         {
-            if (ID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Category category = context.Categories.Find(ID);
-
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(category);
+            return GetViewCategoryById(ID);
         }
         //POST: Categories/Delete
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long ID)
         {
-            Category category = context.Categories.Find(ID);
-            context.Categories.Remove(category);
-            context.SaveChanges();
+            Category category = categoryServices.RemoveCategoryById(ID);
             TempData["Message"] = "Category" + category.Name.ToUpper() + "Was Removed";
             return RedirectToAction("Index");
         }
@@ -120,19 +117,8 @@ namespace Guilherme04.Controllers
         #region [ Detais ]
           public ActionResult Details(long? ID)
         {
-            if(ID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
 
-            Category category = context.Categories.Find(ID);
-            if (category == null)
-            {
-
-                return HttpNotFound();
-            }
-
-            return View(category);
+            return GetViewCategoryById(ID);
         }
 
         #endregion [ Detais ]

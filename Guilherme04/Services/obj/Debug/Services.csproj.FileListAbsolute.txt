@@ -1,0 +1,12 @@
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Services\bin\Debug\Services.dll
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Services\bin\Debug\Services.pdb
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Services\bin\Debug\Model.dll
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Services\bin\Debug\Persistence.dll
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Services\bin\Debug\EntityFramework.dll
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Services\bin\Debug\Model.pdb
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Services\bin\Debug\Persistence.pdb
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Services\bin\Debug\Persistence.dll.config
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Services\bin\Debug\EntityFramework.xml
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Services\obj\Debug\Services.csprojResolveAssemblyReference.cache
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Services\obj\Debug\Services.dll
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Services\obj\Debug\Services.pdb

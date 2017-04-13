@@ -1,4 +1,4 @@
-﻿@model Guilherme04.Models.Product
+﻿@model Model.Register.Product
 
 @{
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
@@ -9,46 +9,15 @@
     <div class="panel-heading">
         Viewing details of a Product
     </div>
-    <div class="panel-body"
-    <div class="form-group">
-        @Html.LabelFor(model => model.Name)
-    <br />
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user"></i>
-
-            </span>
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new
-       { @class ="form-control",disabled ="disabled"}})
-
+    <div class="panel-body">
+        @Html.Partial("~/Views/Products/_PartialDetailsContentPanel.cshtml",Model)
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Category.Name)<br />
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user"></i>
-            </span>
-    @Html.EditorFor(model => model.Category.Name, new { htmlAttributes = new {@class = "form-control",disabled = "disabled"}})
-        </div>
-    </div>
- <div class="form-group">
-        @Html.LabelFor(model => model.Supplier.Name)<br />
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user"></i>
-            </span>
-    @Html.EditorFor(model => model.Supplier.Name, new { htmlAttributes = new {@class = "form-control",disabled = "disabled"}})
-    </div>
-     </div>
-    </div>
+         
+   
     <div class="panel-footer panel-info">
         @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }, new { @class = "btn btn-info" })
         @Html.ActionLink("Return to Listing", "Index", null, new { @class = "btn btn-info" })
     </div>
-</div>
-
-
 
 @section ScriptPage{
     

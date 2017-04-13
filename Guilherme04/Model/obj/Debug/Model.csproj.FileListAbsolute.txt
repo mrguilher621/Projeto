@@ -1,0 +1,5 @@
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Model\bin\Debug\Model.dll
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Model\bin\Debug\Model.pdb
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Model\obj\Debug\Model.dll
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Model\obj\Debug\Model.pdb

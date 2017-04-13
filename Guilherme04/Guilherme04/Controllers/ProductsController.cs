@@ -1,26 +1,70 @@
-﻿using Guilherme04.Contexts;
+﻿
 using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
-using Guilherme04.Models;
 using System.Net;
+using Services.Register;
+using Services.Tables;
 
-namespace Guilherme04.Controllers
+namespace Model.Register
 {
     public class ProductsController : Controller
     {
+        private ProductServices productServices = new ProductServices();
+        private CategoryServices categoryServices = new CategoryServices();
+        private SupplierServices supplierServices = new SupplierServices();
+
+        private ActionResult GetViewProductById(long? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = productServices.GetProductById((long)id);
+            if(product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
+        }
+
+        private void PopularViewBag(Product product = null)
+        {
+            if(product == null)
+            {
+                ViewBag.CategoryId = new SelectList(categoryServices.GetCategoriesClassifiedByName(),
+                    "CategoryId", "Name");
+                ViewBag.SupplierId = new SelectList(supplierServices.GetSuppliersClassifiedsByName(),
+                    "SupplierId", "Name");
+
+
+            }
+        }
+
+        private ActionResult SaveProduct(Product product)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    productServices.SaveProduct(product);
+                    return RedirectToAction("Index");
+                }
+                return View(product);
+            }
+            catch
+            {
+                return View(product);
+            }
+        }
 
       #region [ Actions ]
 
         #region [ Index ]
-        private EFContext context = new EFContext();
-       
-
         // GET: Products
         public ActionResult Index()
-        {
-            var products = context.Products.Include(c => c.Category).Include(s => s.Supplier).OrderBy(n => n.Name);
-            return View(products);
+        { 
+            return View(productServices.GetProductsClassifiedByName());
         }
 
         #endregion [ Index ]
@@ -30,17 +74,8 @@ namespace Guilherme04.Controllers
         // GET: Products/Details/5
         public ActionResult Details(long? id)
         {
-            if(id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = context.Products.Where(p => p.ProductId == id).Include(c => c.Category).
-                Include(s => s.Supplier).First();
-            if(product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
+           
+            return GetViewProductById(id);
         }
 
         #endregion [ Details ]
@@ -50,26 +85,14 @@ namespace Guilherme04.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(context.Categories.
-                OrderBy(b => b.Name), "CategoryId", "Name");
-            ViewBag.SupplierId = new SelectList(context.Suppliers.
-                OrderBy(b => b.Name), "SupplierId", "Name");
+            PopularViewBag();
             return View();
         }
         // POST: Products/Create
         [HttpPost]
         public ActionResult Create(Product product)
         {
-            try
-            {
-                context.Products.Add(product);
-                context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View(product);
-            }
+            return SaveProduct(product);
         }
 
         #endregion [ Create ]
@@ -78,42 +101,15 @@ namespace Guilherme04.Controllers
         // GET: Products/Edit/5
         public ActionResult Edit(long? id)
         {
-            if (id == null){
-
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = context.Products.Find(id);
-            if(product == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CategoryId = new SelectList(context.Categories.OrderBy(b => b.Name),
-                "CategoryId", "Name", product.CategoryId);
-            ViewBag.SupplierId = new SelectList(context.Suppliers.OrderBy(b => b.Name),
-               "SupplierId", "Name", product.SupplierId);
-            return View(product);
+            PopularViewBag(productServices.GetProductById((long)id));
+            return GetViewProductById(id);
         }
 
         // POST: Products/Edit/5
         [HttpPost]
         public ActionResult Edit(long? id, Product product)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    context.Entry(product).State = EntityState.Modified;
-                    context.SaveChanges();
-
-                    return RedirectToAction("Index");
-                }
-
-                return View(product);
-            }
-            catch
-            {
-                return View(product);
-            }
+            return SaveProduct(product);
         }
 
         #endregion [ Edit ]
@@ -123,28 +119,17 @@ namespace Guilherme04.Controllers
         // GET: Products/Delete/5
         public ActionResult Delete(long? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = context.Products.Where(p => p.ProductId == id).Include(c => c.Category).
-                Include(s => s.Supplier).First();
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
+        
+            return GetViewProductById(id);
         }
 
         // POST: Products/Delete/5
         [HttpPost]
-        public ActionResult Delete(long? id, Product product)
+        public ActionResult Delete(long id)
         {
             try
             {
-                product = context.Products.Find(id);
-                context.Products.Remove(product);
-                context.SaveChanges();
+                Product product = productServices.RemoveProductById(id);
                 TempData["Massege"] ="Product" + product.Name.ToUpper() + "Was Removed";
                 return RedirectToAction("Index");
             }

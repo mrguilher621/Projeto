@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Guilherme04.Models.Category>
+﻿@model IEnumerable<Model.Tables.Category>
 
 
 @{
@@ -115,7 +115,7 @@
             $('li').removeClass("active");
             $('#liCategories').addClass("active");
             $('.table').dataTable({
-                "order": [[1, "asc"]]
+                "order": [[0, "asc"]]
             });
         });
 

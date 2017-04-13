@@ -1,19 +1,53 @@
-﻿using Guilherme04.Contexts;
-using Guilherme04.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using Services.Register;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Guilherme04.ExtensionMethods;
 
-namespace Guilherme04.Controllers
+namespace Model.Register
 {
     public class SuppliersController : Controller
     {
-        private EFContext context = new EFContext();
+        private SupplierServices supplierServices = new SupplierServices();
+
+        private ActionResult GetViewSupplierById(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Supplier supplier = supplierServices.GetSupplierById((long)id);
+            if (supplier == null)
+            {
+                return HttpNotFound();
+            }
+            return View(supplier);
+        }
+
+        private ActionResult SaveSupplier(Supplier supplier)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    supplierServices.SaveSupplier(supplier);
+                    return RedirectToAction("Index");
+                }
+                return View(supplier);
+            }
+            catch
+            {
+                return View(supplier);
+            }
+        }
+
+        private void PopularViewBag(Supplier supplier = null)
+        {
+            if (supplier == null)
+            {
+                ViewBag.SupplierId = new SelectList(supplierServices.GetSuppliersClassifiedsByName(),
+                   "SupplierId", "Name");
+            }
+        }
+
 
         #region [ Action ]
 
@@ -23,7 +57,7 @@ namespace Guilherme04.Controllers
         // GET: Suppliers/Index
         public ActionResult Index()
         {
-            return View(context.Suppliers.OrderBy(supplier => supplier.Name));
+            return View(supplierServices.GetSuppliersClassifiedsByName());
         }
 
         #endregion [ Index ]
@@ -32,21 +66,8 @@ namespace Guilherme04.Controllers
         // GET: Suppliers/Detais/5
         public ActionResult Details(long? ID)
         {
-            if(ID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
 
-            Supplier supplier = context.Suppliers.Where(s =>s.SupplierID == ID)
-                .Include("Products.Category").First();
-
-            if (supplier == null)
-            {
-
-                return HttpNotFound();
-            }
-
-            return View(supplier);
+            return GetViewSupplierById(ID);
         }
 
         #endregion [ Details ] 
@@ -54,17 +75,15 @@ namespace Guilherme04.Controllers
         #region [ Create ]
         public ActionResult Create()
         {
+            PopularViewBag();
             return View();
-
         }
         //POST: Suppliers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Supplier supplier)
         {
-            context.Suppliers.Add(supplier);
-            context.SaveChanges();
-            return RedirectToAction("Index");
+            return SaveSupplier(supplier);
         }
         #endregion [ Create ]
 
@@ -72,19 +91,8 @@ namespace Guilherme04.Controllers
         // GET: Suppliers/Edit/5
         public ActionResult Edit(long? ID)
         {
-            if (ID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Supplier supplier = context.Suppliers.Find(ID);
-
-            if (supplier == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(supplier);
+            PopularViewBag(supplierServices.GetSupplierById((long)ID));
+            return GetViewSupplierById(ID);
         }
 
         //POST: Suppliers
@@ -92,45 +100,23 @@ namespace Guilherme04.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Supplier supplier)
         {
-            if (ModelState.IsValid)
-            {
-                var dbEntityEntry = context.Entry(supplier);
-                dbEntityEntry.State = EntityState.Modified;
-                context.SaveChanges();
-                return RedirectToAction("Index");
 
-            }
-
-            return View(supplier);
+            return SaveSupplier(supplier);
         }
 
         #endregion  [ Edit ]
 
         #region [ Delete ]
         public ActionResult Delete(long? ID)
-        {
-            if (ID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Supplier supplier = context.Suppliers.Find(ID);
-
-            if (supplier == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(supplier);
+        { 
+            return GetViewSupplierById(ID);
         }
         //POST: Suppliers/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
          public ActionResult Delete(long ID)
         {
-            Supplier supplier = context.Suppliers.Find(ID);
-            context.Suppliers.Remove(supplier);
-            context.SaveChanges();
+            Supplier supplier = supplierServices.RemoveSupplierById(ID);
             TempData["Message"] = "Supplier" + supplier.Name.ToUpper() + "Was Removed";
             return RedirectToAction("Index");
         }

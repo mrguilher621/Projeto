@@ -1,4 +1,4 @@
-﻿@model Guilherme04.Models.Supplier
+﻿@model Model.Register.Supplier
 
 @{
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
@@ -59,7 +59,7 @@
             $('li').removeClass("active");
             $('#liSuppliers').addClass("active");
             $('.table').dataTable({
-                "order": [[1, "asc"]]
+                "order": [[0, "asc"]]
             });
         });
 

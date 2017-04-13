@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Guilherme04.Models.Supplier>
+﻿@model IEnumerable<Model.Register.Supplier>
 
 @{
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
@@ -115,7 +115,7 @@
             $('li').removeClass("active");
             $('#liSuppliers').addClass('active');
             $('.table').dataTable({
-                "order": [[1, "asc"]]
+                "order": [[0, "asc"]]
             });
 });
 

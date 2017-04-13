@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Guilherme04.Models.Product>
+﻿@model IEnumerable<Model.Register.Product>
 
 @{
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
@@ -121,7 +121,7 @@
             $('li').removeClass("active");
             $('#liProducts').addClass("active");
             $('.table').dataTable({
-                "order": [[1, "asc"]]
+                "order": [[0, "asc"]]
             });
 
 });

@@ -229,12 +229,17 @@ C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\Microsoft.AI
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\Microsoft.ApplicationInsights.dll
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\Model.dll
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\Services.dll
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\System.Web.Helpers.dll
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\System.Web.Mvc.dll
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\System.Web.Razor.dll
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\System.Web.Webpages.Deployment.dll
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\System.Web.Webpages.dll
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\System.Web.Webpages.Razor.dll
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\Persistence.dll
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\Model.pdb
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\Services.pdb
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\EntityFramework.xml
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\EntityFramework.SqlServer.xml
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\Microsoft.AI.DependencyCollector.xml
@@ -249,6 +254,8 @@ C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\System.Web.W
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\System.Web.Webpages.Razor.xml
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\System.Web.Helpers.xml
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\System.Web.Mvc.xml
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\Persistence.pdb
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\bin\Persistence.dll.config
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\obj\Debug\Guilherme04.csprojResolveAssemblyReference.cache
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\obj\Debug\Guilherme04.dll
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\obj\Debug\Guilherme04.pdb
-C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Guilherme04\obj\Debug\Guilherme04.csprojResolveAssemblyReference.cache
