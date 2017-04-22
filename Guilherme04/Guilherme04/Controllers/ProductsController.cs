@@ -1,10 +1,7 @@
-﻿
-using System.Linq;
-using System.Web.Mvc;
-using System.Data.Entity;
-using System.Net;
-using Services.Register;
+﻿using Services.Register;
 using Services.Tables;
+using System.Net;
+using System.Web.Mvc;
 
 namespace Model.Register
 {
@@ -32,12 +29,17 @@ namespace Model.Register
         {
             if(product == null)
             {
-                ViewBag.CategoryId = new SelectList(categoryServices.GetCategoriesClassifiedByName(),
-                    "CategoryId", "Name");
+                ViewBag.CategoryID = new SelectList(categoryServices.GetCategoriesClassifiedByName(),
+                    "CategoryID", "Name");
                 ViewBag.SupplierId = new SelectList(supplierServices.GetSuppliersClassifiedsByName(),
                     "SupplierId", "Name");
-
-
+            }
+            else
+            {
+                ViewBag.CategoryID = new SelectList(categoryServices.GetCategoriesClassifiedByName(),
+                    "CategoryID","Name",product.CategoryID);
+                ViewBag.SupplierId = new SelectList(supplierServices.GetSuppliersClassifiedsByName(),
+                    "SupplierId", "Name", product.SupplierId);
             }
         }
 
@@ -50,10 +52,12 @@ namespace Model.Register
                     productServices.SaveProduct(product);
                     return RedirectToAction("Index");
                 }
+                PopularViewBag(product);
                 return View(product);
             }
             catch
             {
+                PopularViewBag(product);
                 return View(product);
             }
         }
@@ -107,7 +111,7 @@ namespace Model.Register
 
         // POST: Products/Edit/5
         [HttpPost]
-        public ActionResult Edit(long? id, Product product)
+        public ActionResult Edit(Product product)
         {
             return SaveProduct(product);
         }

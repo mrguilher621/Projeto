@@ -14,7 +14,7 @@ namespace Model.Tables
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = categoryServices.GetCategoryById((long)id);
+            Category category = categoryServices.GetCategoryByID((long)id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -84,7 +84,7 @@ namespace Model.Tables
         // GET: EditCategory
         public ActionResult Edit(long? ID)
         {
-            PopularViewBag(categoryServices.GetCategoryById((long)ID));
+            PopularViewBag(categoryServices.GetCategoryByID((long)ID));
             return GetViewCategoryById(ID);
         }
 
@@ -107,7 +107,7 @@ namespace Model.Tables
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long ID)
         {
-            Category category = categoryServices.RemoveCategoryById(ID);
+            Category category = categoryServices.RemoveCategoryByID(ID);
             TempData["Message"] = "Category" + category.Name.ToUpper() + "Was Removed";
             return RedirectToAction("Index");
         }

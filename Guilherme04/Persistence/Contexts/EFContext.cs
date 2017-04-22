@@ -1,12 +1,9 @@
 ﻿
 using Model.Register;
 using Model.Tables;
-using System;
-using System.Collections.Generic;
+using Persistence.Migrations;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Web;
 
 namespace Persistence.Contexts
 {
@@ -26,7 +23,7 @@ namespace Persistence.Contexts
 
         public EFContext() :base("Asp_Net_MCV_CS")
         {
-            Database.SetInitializer<EFContext>(new DropCreateDatabaseIfModelChanges<EFContext>());
+            Database.SetInitializer<EFContext>(new MigrateDatabaseToLatestVersion<EFContext,Configuration>());
 
         }
 

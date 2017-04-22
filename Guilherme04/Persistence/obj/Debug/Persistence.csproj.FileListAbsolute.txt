@@ -10,3 +10,5 @@ C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Persistence\bin\Debug\Entity
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Persistence\obj\Debug\Persistence.csprojResolveAssemblyReference.cache
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Persistence\obj\Debug\Persistence.dll
 C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Persistence\obj\Debug\Persistence.pdb
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Persistence\obj\Debug\Persistence.Migrations.InitialCreate.resources
+C:\Users\Guilherme\Source\Repos\Projeto\Guilherme04\Persistence\obj\Debug\Persistence.csproj.GenerateResource.Cache

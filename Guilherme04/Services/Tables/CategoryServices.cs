@@ -20,9 +20,9 @@ namespace Services.Tables
 
         }
 
-        public Category GetCategoryById(long id)
+        public Category GetCategoryByID(long iD)
         {
-            return categoryDAL.GetCategoryById(id);
+            return categoryDAL.GetCategoryById(iD);
         }
 
         public void SaveCategory(Category category)
@@ -30,9 +30,9 @@ namespace Services.Tables
            categoryDAL.SaveCategory(category);
         }
 
-        public Category RemoveCategoryById(long id)
+        public Category RemoveCategoryByID(long ID)
         {
-            return categoryDAL.RemoveCategorytBy(id);
+            return categoryDAL.RemoveCategorytBy(ID);
         }
     }
 }

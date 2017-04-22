@@ -16,50 +16,18 @@
             Changing the data of a Product
         </div>
         <div class="panel-body">
-            <div class="form-horizontal">
-                <h4>Product</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-denger" })
-                @Html.HiddenFor(model => model.ProductId)
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.SupplierId, "SupplierId", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("SupplierId", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer panel-info">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save Changes" class="btn btn-danger" />
-                    @Html.ActionLink("Return Of List Product", "Index", null, new { @class = "btn btn-warning" })
-                </div>
-                <br />
-                <br />
+            @Html.Partial("~/Views/Products/_PartialEditContentPanel.cshtml", Model)
             </div>
         </div>
-    </div>
-
-
+            <div class="panel-footer panel-info">
+           <div class="col-md-offset-2 col-md-10">
+          <input type="submit" value="Save Changes" class="btn btn-danger" />
+          @Html.ActionLink("Return Of List Product", "Index", null, new { @class = "btn btn-warning" })
+          </div>
+         <br />
+        <br />
+       </div>
 }
-
-
-
 @section ScriptPage{
 
     <script type="text/javascript">
