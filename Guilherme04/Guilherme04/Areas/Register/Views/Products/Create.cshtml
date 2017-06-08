@@ -1,0 +1,45 @@
+﻿@model Models.Register.Product
+
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    ViewBag.Title = "Registering a New Product";
+}
+
+    
+    @using (Html.BeginForm())
+
+    {
+        @Html.AntiForgeryToken()
+
+     <div class="panel panel-primary">
+         <div class="panel-heading">
+             Registering of new Product
+         </div>
+         <div class="panel-body">
+             @Html.Partial("~/Areas/Register/Views/Products/_PartialEditContentPanel.cshtml", Model)
+             </div>
+            
+             <div class="panel-footer panel-info">
+                 <div class="col-md-offset-2 col-md-10">
+                     <input type="submit" value="ADD Product" class="btn btn-danger" />
+                     @Html.ActionLink("Return Of List Product", "Index", null, new { @class = "btn btn-warning" })
+                 </div>
+                 <br />
+                 <br />
+             </div>
+         </div>
+    }
+    @section ScriptPage{
+
+        <script src="~/Scripts/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('li').removeClass("active");
+                $('#liProducts').addClass("active");
+                $("#datepicker").datepicker();
+                
+            });
+
+        </script>
+       
+        }

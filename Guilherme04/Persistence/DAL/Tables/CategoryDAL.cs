@@ -1,15 +1,11 @@
-﻿using Model.Tables;
+﻿using Models.Tables;
 using Persistence.Contexts;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence.DAL.Tables
 {
-  public  class CategoryDAL
+    public  class CategoryDAL
     {
         private EFContext context = new EFContext();
 

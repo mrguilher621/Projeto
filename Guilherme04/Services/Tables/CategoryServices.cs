@@ -1,4 +1,4 @@
-﻿using Model.Tables;
+﻿using Models.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;

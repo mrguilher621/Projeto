@@ -1,9 +1,9 @@
-﻿using Model.Tables;
+﻿using Models.Tables;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Model.Register
+namespace Models.Register
 
 {
     public class Product

@@ -1,4 +1,4 @@
-﻿using Model.Register;
+﻿using Models.Register;
 using Persistence.Contexts;
 using System.Data.Entity;
 using System.Linq;

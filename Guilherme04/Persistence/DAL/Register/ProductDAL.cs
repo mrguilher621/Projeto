@@ -1,15 +1,11 @@
-﻿using Model.Register;
+﻿using Models.Register;
 using Persistence.Contexts;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence.DAL.Register
 {
-   public class ProductDAL
+    public class ProductDAL
     {
         private EFContext context = new EFContext();
         public IQueryable GetProductsClassifiedByName()

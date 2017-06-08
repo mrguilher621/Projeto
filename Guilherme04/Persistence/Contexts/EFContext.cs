@@ -1,6 +1,6 @@
 ﻿
-using Model.Register;
-using Model.Tables;
+using Models.Register;
+using Models.Tables;
 using Persistence.Migrations;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -21,9 +21,9 @@ namespace Persistence.Contexts
 
         #region [ Constructor ]
 
-        public EFContext() :base("Asp_Net_MCV_CS")
+        public EFContext() : base("Asp_Net_MCV_CS")
         {
-            Database.SetInitializer<EFContext>(new MigrateDatabaseToLatestVersion<EFContext,Configuration>());
+            Database.SetInitializer<EFContext>(new MigrateDatabaseToLatestVersion<EFContext, Configuration>());
 
         }
 
@@ -34,6 +34,7 @@ namespace Persistence.Contexts
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
 
     }
 }
